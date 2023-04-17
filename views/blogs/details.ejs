@@ -8,7 +8,12 @@
       <div class="content">
         <p><%= blog.body %></p>
       </div>
-      <a class="delete" data-doc="<%= blog._id%>"><img src="/trashcan.svg" alt="delete"></a>
+      <div class = "btn">
+
+        <!-- <a class="delete" data-doc="<%= blog._id%>"><img src="/trashcan.svg" alt="delete"></a> -->
+        <a class="delete" data-doc="<%= blog._id%>"> Delete</a>
+        <a class="update" href="/blogs/update/<%=blog._id%>" data-doc="<%= blog._id %>">update</a>  
+      </div>
     </div>
 
     <div><%- include('../partials/footer.ejs') %></div>
@@ -24,7 +29,7 @@
           window.location.href = data.redirect; 
         })
         .catch(err=>console.log(err));
-      })
+      });
     </script>
   </body>
 </html>

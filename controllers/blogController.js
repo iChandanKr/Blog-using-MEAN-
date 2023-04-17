@@ -49,7 +49,30 @@ const blog_delete = (req, res) => {
       console.log(err);
     });
 };
+const blog_update_get = (req, res) => {
+  const id = req.params.id;
+  Blog.findById(id)
+    .then((result) => {
+      res.render("blogs/update", { blog: result, title: "update-blog" });
+    })
+    .catch((err) => {
+      console.log(err);
+    });
 
+  // console.log()
+};
+const blog_update_put = (req,res)=>{
+  const id = req.params.id;
+  const{title,snippet,body} = req.body;
+  console.log(req.body);
+  const newBlog = {title,snippet,body};
+  console.log(newBlog);
+  Blog.findByIdAndUpdate(id,newBlog).then((result)=>{
+    res.redirect(`/blogs/${id}`);
+  }).catch((err)=>{
+    console.log(err); 
+  })
+};
 
 module.exports = {
   blog_index,
@@ -57,4 +80,6 @@ module.exports = {
   blog_create_get,
   blog_create_post,
   blog_delete,
+  blog_update_get,
+  blog_update_put
 };
